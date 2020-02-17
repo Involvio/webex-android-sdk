@@ -27,6 +27,8 @@ import java.util.Date;
 import java.util.List;
 
 import android.support.annotation.NonNull;
+import android.text.TextUtils;
+
 import com.cisco.spark.android.model.*;
 import com.cisco.spark.android.model.conversation.*;
 import com.ciscowebex.androidsdk.message.internal.RemoteFileImpl;
@@ -133,6 +135,8 @@ public class Message {
 
     private String personDisplayName;
 
+    private String parentMessageId;
+
     private String spaceId;
 
     private Space.SpaceType spaceType;
@@ -161,6 +165,11 @@ public class Message {
         if (activity.getObject() != null) {
             this.textAsObject = new Text(activity.getObject());
         }
+
+        if (activity.isReply() && !TextUtils.isEmpty(activity.getParentActivityId())) {
+            this.parentMessageId = new WebexId(WebexId.Type.MESSAGE_ID, activity.getParentActivityId()).toHydraId();
+        }
+
         if (activity.getTarget() instanceof Conversation) {
             this.spaceId = new WebexId(WebexId.Type.ROOM_ID, activity.getTarget().getId()).toHydraId();
             this.spaceType = ((Conversation) activity.getTarget()).isOneOnOne() ? Space.SpaceType.DIRECT : Space.SpaceType.GROUP;
@@ -235,6 +244,15 @@ public class Message {
      */
     public String getPersonDisplayName() {
         return personDisplayName;
+    }
+
+    /**
+     * Returns the parent message id for any thread message
+     * @return
+     */
+
+    public String getParentMessageId() {
+        return parentMessageId;
     }
 
     /**
