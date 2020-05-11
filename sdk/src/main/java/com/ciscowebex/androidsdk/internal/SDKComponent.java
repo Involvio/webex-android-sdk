@@ -33,6 +33,8 @@ public interface SDKComponent {
 
     TokenAuthenticator inject(TokenAuthenticator authenticator);
 
+    CustomWebexAuthenticator inject(CustomWebexAuthenticator authenticator);
+
     PhoneImpl inject(PhoneImpl phone);
 
     CallImpl inject(CallImpl call);
