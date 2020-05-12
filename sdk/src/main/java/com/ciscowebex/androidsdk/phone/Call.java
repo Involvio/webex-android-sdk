@@ -172,6 +172,12 @@ public interface Call {
     CallMembership getFrom();
 
     /**
+     * @return true if call is a group call
+     * @since Hotfix/2.4.0.1
+     */
+    boolean isGroup();
+
+    /**
      * @return The intended recipient of this call.
      * @since 0.1
      */

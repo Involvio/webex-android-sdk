@@ -787,7 +787,7 @@ public class CallImpl implements Call {
         return ret;
     }
 
-    boolean isGroup() {
+    public boolean isGroup() {
         return _isGroup;
     }
 
