@@ -125,7 +125,7 @@ public class CallImpl implements Call {
         }
     }
 
-    boolean isGroup() {
+    public boolean isGroup() {
         return group;
     }
 
